@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Enrollize — Choose Clarity. Skip the queue.</title>
+    <meta name="description"
+        content="Enrollize is a student-first marketplace to discover, compare and enroll in nearby institutes — fully online." />
+    <link rel="icon" href="/enrollize-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --purple: #4C0081;
+            --purple-deep: #36005c;
+            --purple-soft: #f4ecfb;
+            --ink: #1a0a26;
+            --muted: #6b5b78;
+            --white: #ffffff;
+            --radius: 18px;
+            --max: 1180px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html,
+        body {
+            background: var(--white);
+            color: var(--ink);
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth
+        }
+
+        img {
+            display: block;
+            max-width: 100%
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        /* Nav */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 28px;
+            background: rgba(255, 255, 255, .85);
+            backdrop-filter: saturate(140%) blur(10px);
+            border-bottom: 1px solid #eee5f3;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 18px;
+            color: var(--purple)
+        }
+
+        .brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px
+        }
+
+        .links {
+            display: flex;
+            gap: 28px
+        }
+
+        .links a {
+            color: var(--ink);
+            font-weight: 500;
+            font-size: 14.5px;
+            opacity: .8
+        }
+
+        .links a:hover {
+            opacity: 1;
+            color: var(--purple)
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 14.5px;
+            border: 1px solid transparent;
+            transition: .2s transform, .2s background, .2s color
+        }
+
+        .btn:hover {
+            transform: translateY(-1px)
+        }
+
+        .btn-primary {
+            background: var(--purple);
+            color: #fff
+        }
+
+        .btn-primary:hover {
+            background: var(--purple-deep)
+        }
+
+        .btn-outline {
+            border-color: var(--purple);
+            color: var(--purple)
+        }
+
+        .btn-outline:hover {
+            background: var(--purple);
+            color: #fff
+        }
+
+        .btn-ghost {
+            border: 1px solid #e7d9f1;
+            color: var(--purple);
+            background: #fff
+        }
+
+        .btn-ghost:hover {
+            background: var(--purple-soft)
+        }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            max-width: var(--max);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            gap: 40px;
+            padding: 80px 28px 60px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--purple);
+            background: var(--purple-soft);
+            padding: 6px 12px;
+            border-radius: 999px
+        }
+
+        .eyebrow.light {
+            background: rgba(255, 255, 255, .12);
+            color: #fff
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 76px);
+            line-height: 1.02;
+            font-weight: 800;
+            letter-spacing: -.03em;
+            margin: 18px 0 18px
+        }
+
+        .under {
+            position: relative;
+            color: var(--purple)
+        }
+
+        .under:after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 6px;
+            height: 14px;
+            background: var(--purple-soft);
+            z-index: -1;
+            border-radius: 6px
+        }
+
+        .lede {
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--muted);
+            max-width: 540px
+        }
+
+        .cta-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 28px;
+            flex-wrap: wrap
+        }
+
+        .stats {
+            display: flex;
+            gap: 36px;
+            margin-top: 44px;
+            flex-wrap: wrap
+        }
+
+        .stats b {
+            display: block;
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--purple);
+            letter-spacing: -.02em
+        }
+
+        .stats span {
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        .hero-art {
+            position: relative;
+            min-height: 360px
+        }
+
+        .hero-art .mark {
+            position: absolute;
+            inset: 0;
+            margin: auto;
+            width: 78%;
+            max-width: 380px;
+            border-radius: 36px;
+            box-shadow: 0 30px 80px -20px rgba(76, 0, 129, .45);
+            animation: float 6s ease-in-out infinite
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: .55
+        }
+
+        .orb-a {
+            width: 280px;
+            height: 280px;
+            background: #a76cff;
+            top: -30px;
+            right: -30px
+        }
+
+        .orb-b {
+            width: 220px;
+            height: 220px;
+            background: #ffb6e6;
+            bottom: -20px;
+            left: -20px
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(-14px)
+            }
+        }
+
+        /* Marquee */
+        .marquee {
+            background: var(--purple);
+            color: #fff;
+            overflow: hidden;
+            padding: 18px 0;
+            border-top: 1px solid #3a005f;
+            border-bottom: 1px solid #3a005f
+        }
+
+        .track {
+            display: flex;
+            gap: 32px;
+            white-space: nowrap;
+            animation: scroll 30s linear infinite;
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: -.01em
+        }
+
+        .track span {
+            opacity: .95
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(0)
+            }
+
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        /* Sections */
+        .section {
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 100px 28px
+        }
+
+        .section-head {
+            max-width: 720px;
+            margin-bottom: 48px
+        }
+
+        .section-head h2 {
+            font-size: clamp(30px, 4vw, 48px);
+            font-weight: 800;
+            letter-spacing: -.025em;
+            line-height: 1.1
+        }
+
+        .section-head p {
+            margin-top: 14px;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.6
+        }
+
+        .section.dark {
+            background: var(--purple);
+            color: #fff;
+            max-width: none;
+            border-radius: 0
+        }
+
+        .section.dark .section-head {
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 28px;
+            max-width: var(--max)
+        }
+
+        .section.dark .section-head p {
+            color: rgba(255, 255, 255, .75)
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px
+        }
+
+        .card {
+            padding: 28px;
+            border: 1px solid #efe6f6;
+            border-radius: var(--radius);
+            background: #fff;
+            transition: .25s;
+            position: relative;
+            overflow: hidden
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: var(--purple);
+            box-shadow: 0 20px 50px -25px rgba(76, 0, 129, .35)
+        }
+
+        .card .num {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--purple);
+            letter-spacing: .1em;
+            margin-bottom: 12px
+        }
+
+        .card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -.01em
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 14.5px;
+            line-height: 1.55
+        }
+
+        .steps {
+            list-style: none;
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 0 28px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px
+        }
+
+        .steps li {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .12);
+            padding: 24px;
+            border-radius: var(--radius);
+            transition: .25s
+        }
+
+        .steps li:hover {
+            background: rgba(255, 255, 255, .1);
+            transform: translateY(-3px)
+        }
+
+        .steps li span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #fff;
+            color: var(--purple);
+            font-weight: 800;
+            margin-bottom: 14px
+        }
+
+        .steps h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px
+        }
+
+        .steps p {
+            font-size: 13.5px;
+            color: rgba(255, 255, 255, .7);
+            line-height: 1.5
+        }
+
+        /* CTA */
+        .cta {
+            text-align: center;
+            padding: 120px 28px;
+            max-width: 760px;
+            margin: 0 auto
+        }
+
+        .cta h2 {
+            font-size: clamp(32px, 4.5vw, 52px);
+            font-weight: 800;
+            letter-spacing: -.025em;
+            line-height: 1.1
+        }
+
+        .cta>p {
+            color: var(--muted);
+            margin-top: 14px;
+            font-size: 17px
+        }
+
+        .waitlist {
+            display: flex;
+            gap: 10px;
+            margin: 32px auto 12px;
+            max-width: 460px;
+            background: #fff;
+            padding: 8px;
+            border-radius: 999px;
+            border: 1px solid #e7d9f1;
+            box-shadow: 0 20px 60px -30px rgba(76, 0, 129, .35)
+        }
+
+        .waitlist input {
+            flex: 1;
+            border: 0;
+            outline: 0;
+            padding: 12px 18px;
+            font: inherit;
+            font-size: 15px;
+            background: transparent;
+            color: var(--ink)
+        }
+
+        .hint {
+            font-size: 13px;
+            color: var(--muted)
+        }
+
+        .linktree {
+            display: inline-block;
+            margin-top: 18px;
+            color: var(--purple);
+            font-weight: 600;
+            font-size: 14.5px
+        }
+
+        .linktree:hover {
+            text-decoration: underline
+        }
+
+        /* Footer */
+        .foot {
+            border-top: 1px solid #eee5f3;
+            padding: 32px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            max-width: var(--max);
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        .foot-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--purple);
+            font-weight: 800
+        }
+
+        .foot-brand img {
+            width: 26px;
+            height: 26px;
+            border-radius: 7px
+        }
+
+        /* Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity .8s ease, transform .8s ease
+        }
+
+        .reveal.in {
+            opacity: 1;
+            transform: none
+        }
+
+        @media (max-width:880px) {
+            .links {
+                display: none
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 50px
+            }
+
+            .hero-art {
+                order: -1;
+                min-height: 260px
+            }
+
+            .hero-art .mark {
+                width: 60%
+            }
+
+            .cards {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .steps {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .section {
+                padding: 70px 22px
+            }
+        }
+
+        @media (max-width:520px) {
+
+            .cards,
+            .steps {
+                grid-template-columns: 1fr
+            }
+
+            .stats {
+                gap: 22px
+            }
+
+            .waitlist {
+                flex-direction: column;
+                border-radius: 18px;
+                padding: 12px
+            }
+
+            .waitlist input {
+                text-align: center
+            }
+
+            .waitlist .btn {
+                justify-content: center
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="nav">
+        <a class="brand" href="#top">
+            <img src="/enrollize-logo-image.png" alt="Enrollize" />
+            <span>Enrollize</span>
+        </a>
+        <nav class="links">
+            <a href="#how">How it works</a>
+            <a href="#why">Why Enrollize</a>
+            <a href="#connect">Connect</a>
+        </nav>
+        <a class="btn btn-ghost" href="https://linktr.ee/enrollize" target="_blank" rel="noreferrer">Get Early
+            Access</a>
+    </header>
+    <main id="top">
+        <section class="hero">
+            <div class="hero-inner">
+                <span class="eyebrow">● Coming soon · EdTech</span>
+                <h1>
+                    Choose <span class="under">clarity</span>.<br />
+                    Skip the admissions queue.
+                </h1>
+                <p class="lede">
+                    Enrollize is the smart way to discover, compare and join institutes near you — fully online.
+                    Verified fees, real facilities, one-tap enrollment.
+                </p>
+                <div class="cta-row">
+                    <a class="btn btn-primary" href="https://linktr.ee/enrollize" target="_blank" rel="noreferrer">Join
+                        the waitlist</a>
+                    <a class="btn btn-outline" href="#how">See how it works</a>
+                </div>
+
+            </div>
+            <div class="hero-art" aria-hidden="true">
+                <div class="orb orb-a"></div>
+                <div class="orb orb-b"></div>
+                <img class="mark" src="/enrollize-logo-image.png" alt="" />
+            </div>
+        </section>
+        <section class="marquee" aria-hidden="true">
+            <div class="track">
+                <span>choose clarity</span><span>•</span>
+                <span>discover institutes</span><span>•</span>
+                <span>compare fees</span><span>•</span>
+                <span>enroll online</span><span>•</span>
+                <span>skip the queue</span><span>•</span>
+                <span>choose clarity</span><span>•</span>
+                <span>discover institutes</span><span>•</span>
+                <span>compare fees</span><span>•</span>
+                <span>enroll online</span><span>•</span>
+                <span>skip the queue</span><span>•</span>
+            </div>
+        </section>
+        <section id="why" class="section">
+            <div class="section-head">
+                <h2>Admissions, finally built for your phone.</h2>
+                <p>You order food in three taps. Joining a new course should feel the same.
+                    Enrollize replaces campus visits, scattered tabs and hidden fees with one clear marketplace.</p>
+            </div>
+            <div class="cards">
+                <article class="card">
+                    <div class="num">01</div>
+                    <h3>Verified institutes</h3>
+                    <p>Real fees, real facilities, real photos — vetted before they go live.</p>
+                </article>
+                <article class="card">
+                    <div class="num">02</div>
+                    <h3>Side-by-side compare</h3>
+                    <p>Stack courses, fees and campuses next to each other in seconds.</p>
+                </article>
+                <article class="card">
+                    <div class="num">03</div>
+                    <h3>One-tap enrollment</h3>
+                    <p>A single digital form. Pay online or cash-on-counter. Done.</p>
+                </article>
+                <article class="card">
+                    <div class="num">04</div>
+                    <h3>Digital enrollment card</h3>
+                    <p>Skip the registrar line — flash your card and walk into class.</p>
+                </article>
+            </div>
+        </section>
+        <section id="how" class="section dark">
+            <div class="section-head">
+                <span class="eyebrow light">The 5-step digital enrollment</span>
+                <h2>As fast as booking a flight.</h2>
+            </div>
+            <ol class="steps">
+                <li><span>1</span>
+                    <div>
+                        <h4>Browse & discover</h4>
+                        <p>Open the app to a curated marketplace of top local institutes.</p>
+                    </div>
+                </li>
+                <li><span>2</span>
+                    <div>
+                        <h4>Select your course</h4>
+                        <p>Find the perfect match and tap <em>Enroll</em>.</p>
+                    </div>
+                </li>
+                <li><span>3</span>
+                    <div>
+                        <h4>Fill information</h4>
+                        <p>One intuitive digital form — no registration packets.</p>
+                    </div>
+                </li>
+                <li><span>4</span>
+                    <div>
+                        <h4>Secure your seat</h4>
+                        <p>Pay online or pick cash-on-counter at the campus.</p>
+                    </div>
+                </li>
+                <li><span>5</span>
+                    <div>
+                        <h4>Get your card</h4>
+                        <p>A digital enrollment card lands on your device instantly.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+        <section id="connect" class="cta">
+            <h2>Be first in line — without the line.</h2>
+            <p>We're launching soon in your city. Get early access and updates.</p>
+            <form class="waitlist" onsubmit="return joinWaitlist(event)">
+                <input type="email" required placeholder="you@email.com" aria-label="Email" />
+                <button class="btn btn-primary" type="submit">Notify me</button>
+            </form>
+            <p class="hint" id="waitMsg">No spam. One email when we go live.</p>
+            <a class="linktree" href="https://linktr.ee/enrollize" target="_blank" rel="noreferrer">linktr.ee/enrollize
+                ↗</a>
+        </section>
+    </main>
+    <footer class="foot">
+        <div class="foot-brand">
+            <img src="/enrollize-logo-image.png" alt="Enrollize" />
+            <span>Enrollize</span>
+        </div>
+        <p>© <span id="yr"></span> Enrollize. All rights reserved.</p>
+    </footer>
+    <script>
+        // Year
+        document.getElementById('yr').textContent = new Date().getFullYear();
+        // Reveal on scroll
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.section, .card, .steps li, .cta, .hero-inner').forEach(el => {
+            el.classList.add('reveal'); io.observe(el);
+        });
+        // Waitlist (front-end only demo)
+        window.joinWaitlist = function (e) {
+            e.preventDefault();
+            const input = e.target.querySelector('input');
+            const msg = document.getElementById('waitMsg');
+            const email = input.value.trim();
+            if (!email) return false;
+            try {
+                const list = JSON.parse(localStorage.getItem('enrollize_waitlist') || '[]');
+                if (!list.includes(email)) list.push(email);
+                localStorage.setItem('enrollize_waitlist', JSON.stringify(list));
+            } catch (_) { }
+            input.value = '';
+            msg.textContent = "You're on the list — we'll email you when Enrollize opens in your city.";
+            msg.style.color = '#4C0081';
+            msg.style.fontWeight = '600';
+            return false;
+        };
+    </script>
+</body>
+
+</html>
