@@ -1,0 +1,748 @@
+        :root {
+            /* Strict Brand Identity Values */
+            --brand-purple: #4C0081;
+            --brand-white: #ffffff;
+            
+            /* Enhanced Psychological Visual Hierarchy Palette */
+            --purple-deep: #1F0036;
+            --purple-light: #F7F2FC;
+            --purple-bright: #6A0DAD;
+            --purple-muted: #8E79A0;
+            --ink: #0F0914;
+            
+            --font-main: 'Inter', system-ui, sans-serif;
+            --transition-premium: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --border-line: rgba(76, 0, 129, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            background-color: var(--brand-white);
+            color: var(--ink);
+            font-family: var(--font-main);
+            -webkit-font-smoothing: antialiased;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* --- PREVENT UTILITY CLIPPING & RESET ANIMATIONS --- */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- IMMERSIVE MICRO-ANIMATIONS & PSYCHOLOGICAL FOCUS --- */
+        @keyframes floatEffect {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulseTrack {
+            0%, 100% { stroke-dashoffset: 0; }
+            50% { stroke-dashoffset: 20; }
+        }
+
+        /* Static Custom SVG Markers */
+        .marker-container {
+            position: relative;
+            display: inline-block;
+            color: var(--brand-purple);
+            font-weight: 900;
+            z-index: 2;
+        }
+
+        .marker-svg-underline {
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 12px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .marker-svg-circle {
+            position: absolute;
+            left: -8px;
+            top: -4px;
+            width: calc(100% + 16px);
+            height: calc(100% + 8px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .vector-connector-track {
+            position: absolute;
+            pointer-events: none;
+            z-index: 1;
+            overflow: visible;
+        }
+        
+        .vector-connector-track path {
+            animation: pulseTrack 8s linear infinite;
+            stroke-dasharray: 6, 8;
+        }
+
+        .micro-ui-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            stroke-width: 2.2;
+            stroke: currentColor;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* --- HIGHLY ACCESSIBLE RESPONSIVE NAVIGATION --- */
+        .studio-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 200;
+            padding: 32px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-premium);
+        }
+
+        /* Elegant Brand Logo Shell Container */
+        .brand-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-logo-img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+            transition: var(--transition-premium);
+        }
+
+        /* Placeholder graphic asset styles if logo image template path is vacant */
+        .brand-logo-img[src=""], .brand-logo-img:not([src]) {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--brand-purple), var(--purple-bright));
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .brand-logo-text {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            color: var(--brand-purple);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--brand-white);
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0.85;
+            transition: var(--transition-premium);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--brand-white);
+            transition: var(--transition-premium);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .btn-capsule {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: var(--brand-purple);
+            color: var(--brand-white);
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition-premium);
+            border: 1px solid transparent;
+            box-shadow: 0 4px 18px rgba(76, 0, 129, 0.15);
+            cursor: pointer;
+        }
+
+        .btn-capsule:hover {
+            background: var(--ink);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-white {
+            background: var(--brand-white);
+            color: var(--brand-purple);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-white:hover {
+            background: var(--purple-light);
+            color: var(--purple-deep);
+        }
+
+        /* --- HERO REGION CONTEXT --- */
+        .hero-canvas {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(180deg, rgba(15, 9, 20, 0.7) 0%, rgba(76, 0, 129, 0.5) 100%), 
+                        url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 160px 24px 100px;
+            color: var(--brand-white);
+        }
+
+        /* Tagline Psychological Priming Layer */
+        .brand-tagline-badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 8px 20px;
+            border-radius: 99px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            display: inline-block;
+        }
+
+        .hero-canvas h1 {
+            font-size: clamp(38px, 6.5vw, 84px);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            max-width: 1050px;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+
+        .hero-canvas p {
+            font-size: clamp(16px, 2vw, 21px);
+            max-width: 660px;
+            font-weight: 500;
+            opacity: 0.95;
+            line-height: 1.6;
+            margin-bottom: 48px;
+            letter-spacing: -0.01em;
+        }
+
+        /* --- STAGGERED INTRO DIALOGUE GRAPH --- */
+        .statement-grid-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 140px 60px;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .statement-left h2 {
+            font-size: clamp(32px, 4vw, 52px);
+            color: var(--brand-purple);
+            line-height: 1.12;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .statement-right p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--ink);
+            opacity: 0.9;
+        }
+
+        /* --- USER DISCOVERY PORTAL WRAPPER --- */
+        .marketplace-wrapper {
+            background-color: var(--purple-light);
+            padding: 140px 60px;
+            position: relative;
+        }
+
+        .wrapper-title {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .wrapper-title p {
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--brand-purple);
+            margin-bottom: 12px;
+        }
+
+        .wrapper-title h2 {
+            font-size: clamp(30px, 3.8vw, 48px);
+            font-weight: 900;
+            color: var(--ink);
+            letter-spacing: -0.03em;
+        }
+
+        .marketplace-grid-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .marketplace-card-node {
+            background: var(--brand-white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 30px rgba(76, 0, 129, 0.02);
+            transition: var(--transition-premium);
+            position: relative;
+            border: 1px solid rgba(76, 0, 129, 0.04);
+        }
+
+    
+        .image-viewport-holder {
+            width: 100%;
+            height: 280px;
+            background-color: var(--ink);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-viewport-holder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-premium);
+        }
+
+     
+
+        .overlay-ui-pill {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            padding: 8px 16px;
+            border-radius: 99px;
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--brand-purple);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-caption-details {
+            padding: 30px;
+            text-align: left;
+            border-top: 1px solid var(--border-line);
+        }
+
+        .card-caption-details h3 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--ink);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .card-caption-details p {
+            font-size: 14.5px;
+            color: var(--purple-muted);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* --- ASYMMETRIC MASONRY INTERFACES --- */
+        .stepped-pipeline-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 160px 60px;
+            position: relative;
+        }
+
+        .asymmetric-feature-block {
+            display: flex;
+            align-items: center;
+            gap: 120px;
+            margin-bottom: 180px;
+            position: relative;
+        }
+
+        .asymmetric-feature-block:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .block-text-pane {
+            flex: 1;
+            position: relative;
+            z-index: 5;
+        }
+
+        .block-text-pane .step-counter-tag {
+            font-size: 14px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: var(--brand-purple);
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .block-text-pane h3 {
+            font-size: 40px;
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
+            color: var(--ink);
+        }
+
+        .block-text-pane p {
+            font-size: 17px;
+            color: var(--ink);
+            opacity: 0.85;
+            line-height: 1.75;
+        }
+
+        .block-media-pane {
+            flex: 1;
+            position: relative;
+        }
+
+        .premium-frame-shadow {
+            width: 100%;
+            height: 480px;
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 40px 90px -20px rgba(31, 0, 54, 0.15);
+            position: relative;
+            border: 1px solid rgba(76, 0, 129, 0.05);
+        }
+
+        .premium-frame-shadow img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Overlapping Psychological Dynamic Component Cards */
+        .floating-interactive-card {
+            position: absolute;
+            bottom: -24px;
+            right: -24px;
+            background: var(--brand-white);
+            border: 1px solid rgba(76, 0, 129, 0.2);
+            padding: 24px;
+            border-radius: 20px;
+            box-shadow: 0 30px 60px rgba(15, 9, 20, 0.1);
+            max-width: 280px;
+            z-index: 10;
+            animation: floatEffect 5s ease-in-out infinite;
+        }
+
+        .floating-interactive-card h5 {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--brand-purple);
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .floating-interactive-card p {
+            font-size: 13px;
+            color: var(--ink);
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        /* --- ADMISSION PASSPORT MOSAIC PANELS --- */
+        .mosaic-system-container {
+            background-color: var(--purple-deep);
+            color: var(--brand-white);
+            padding: 140px 60px;
+            position: relative;
+        }
+
+        .mosaic-system-container h2 {
+            text-align: center;
+            font-size: clamp(32px, 4.5vw, 48px);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            margin-bottom: 80px;
+            text-transform: uppercase;
+        }
+
+        .mosaic-triple-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .mosaic-block-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 24px;
+            padding: 54px 44px;
+            transition: var(--transition-premium);
+            position: relative;
+        }
+
+        .mosaic-block-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-8px);
+        }
+
+        .mosaic-icon-tray {
+            color: var(--brand-white);
+            margin-bottom: 32px;
+            opacity: 0.95;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 14px;
+            border-radius: 16px;
+        }
+
+        .mosaic-block-item h4 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .mosaic-block-item p {
+            font-size: 15.5px;
+            line-height: 1.65;
+            color: var(--purple-light);
+            opacity: 0.8;
+        }
+
+        /* --- INTERACTIVE ACTION ENTRY GRID --- */
+        .conversion-editorial-hub {
+            max-width: 840px;
+            margin: 0 auto;
+            padding: 160px 40px;
+            text-align: center;
+        }
+
+        .conversion-editorial-hub h2 {
+            font-size: clamp(34px, 4.8vw, 54px);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            margin-bottom: 24px;
+            color: var(--ink);
+        }
+
+        .conversion-editorial-hub p {
+            color: var(--purple-muted);
+            font-size: 19px;
+            margin-bottom: 54px;
+            font-weight: 500;
+        }
+
+        .input-underline-layout {
+            display: flex;
+            border-bottom: 3px solid var(--brand-purple);
+            padding-bottom: 16px;
+            align-items: center;
+            transition: var(--transition-premium);
+        }
+
+        .input-underline-layout:focus-within {
+            border-color: var(--purple-bright);
+        }
+
+        .input-underline-layout input {
+            flex: 1;
+            border: 0;
+            background: transparent;
+            outline: 0;
+            font-family: var(--font-main);
+            font-size: 20px;
+            font-weight: 600;
+            padding: 0 24px 0 0;
+            color: var(--ink);
+        }
+
+        .input-underline-layout input::placeholder {
+            color: var(--purple-muted);
+            opacity: 0.45;
+        }
+
+        .input-underline-layout button {
+            background: transparent;
+            border: 0;
+            font-family: var(--font-main);
+            font-size: 16px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            color: var(--brand-purple);
+            transition: var(--transition-premium);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .input-underline-layout button:hover {
+            color: var(--purple-bright);
+            transform: translateX(6px);
+        }
+
+        /* --- GLOBAL FOOTER ARCHITECTURE --- */
+        .footer-system-row {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            border-top: 1px solid var(--border-line);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: var(--purple-muted);
+            font-weight: 500;
+        }
+
+        /* Dynamic Onscroll Viewport Reveals */
+        .reveal-node-view {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-node-view.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- 100% PERFECT MOBILE RESPONSIVENESS OVERRIDES --- */
+        @media (max-width: 1024px) {
+            .studio-nav {
+                padding: 24px 40px;
+            }
+            .statement-grid-container, .asymmetric-feature-block {
+                grid-template-columns: 1fr;
+                flex-direction: column !important;
+                gap: 60px;
+                padding: 100px 40px;
+            }
+            .marketplace-grid-strip {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 0 20px;
+            }
+            .mosaic-triple-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 0 20px;
+            }
+            .vector-connector-track {
+                display: none !important; /* Eliminate desktop paths to maintain vertical flow clarity */
+            }
+            .premium-frame-shadow {
+                height: 380px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .studio-nav {
+                padding: 20px 24px;
+            }
+            .nav-links, .studio-nav .btn-capsule {
+                display: none; /* Fluid clean minimal viewports */
+            }
+            .hero-canvas {
+                padding-top: 140px;
+            }
+            .statement-grid-container, .asymmetric-feature-block {
+                padding: 80px 24px;
+                gap: 40px;
+            }
+            .marketplace-wrapper, .mosaic-system-container, .stepped-pipeline-section {
+                padding: 100px 24px;
+            }
+            .marketplace-grid-strip {
+                grid-template-columns: 1fr;
+                padding: 0;
+                gap: 24px;
+            }
+            .mosaic-triple-grid {
+                padding: 0;
+            }
+            .premium-frame-shadow {
+                height: 300px;
+            }
+            .floating-interactive-card {
+                position: relative;
+                bottom: 0;
+                right: 0;
+                margin-top: 20px;
+                max-width: 100%;
+                animation: none;
+            }
+            .conversion-editorial-hub {
+                padding: 100px 24px;
+            }
+            .input-underline-layout input {
+                font-size: 17px;
+            }
+            .footer-system-row {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+                padding: 40px 24px;
+            }
+        }
+    
